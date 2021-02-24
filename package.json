@@ -1,21 +1,9 @@
 {
-  "name": "@sjkh/mocker-backend",
+  "name": "dmocker-api",
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "DM <ilostinyoureyes@gmail.com>",
   "homepage": "",
-  "license": "ISC",
-  "main": "lib/mocker-backend.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
-  "publishConfig": {
-    "registry": "https://registry.yarnpkg.com"
-  },
   "jest": {
     "moduleFileExtensions": [
       "js",
