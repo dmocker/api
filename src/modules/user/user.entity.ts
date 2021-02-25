@@ -81,7 +81,7 @@ export class User {
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: string
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: string
 
   @BeforeInsert()

@@ -48,7 +48,7 @@ type Query {
 
 type Mutation {
   register(input: CreateUserInput!): User
-  updateUser(_id: String!, input: UpdateUserInput!): boolean
+  updateUser(_id: String!, input: UpdateUserInput!): Boolean
   deleteUser(_id: String!): Boolean @hasRole(role: "admin")
   deleteUsers: Boolean! @hasRole(role: "admin")
   login(input: LoginUserInput!): LoginResponse

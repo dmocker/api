@@ -13,12 +13,10 @@ import logger from 'morgan'
 import compression from 'compression'
 import { ValidationPipe } from './common/pipes/validation.pipe'
 
-dotenv.config({
-  path: path.resolve(__dirname, '..', '..', '..', '.env')
-})
+dotenv.config()
 
 declare const module: any
-const port = process.env.API_PORT || 4000
+const port = process.env.PORT || 4000
 export class MyLogger implements LoggerService {
   log(message: string) {}
   error(message: string, trace: string) {}
@@ -29,7 +27,7 @@ export class MyLogger implements LoggerService {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true, logger: new MyLogger() })
-  app.use(helmet())
+  app.use(helmet({ contentSecurityPolicy: false }))
   // app.use(csurf())
   // app.use(
   //   rateLimit({
@@ -46,6 +44,7 @@ async function bootstrap() {
   //   Variables: ${JSON.stringify(variables)}
   //   `
   // })
+
   app.use(compression())
   app.use('/voyager', voyagerMiddleware({ endpointUrl: 'graphql' }))
   app.useGlobalPipes(new ValidationPipe())
@@ -59,4 +58,5 @@ async function bootstrap() {
   Logger.log(`🚀 Server ready at http://localhost:${port}/graphql`, 'Bootstrap')
   Logger.log(`🚀 Subscriptions ready at ws://localhost:${port}/graphql`, 'Bootstrap')
 }
+
 bootstrap()
